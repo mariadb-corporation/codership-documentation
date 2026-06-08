@@ -17,6 +17,9 @@ Notable changes and fixes in MySQL-wsrep in 8.0.46-26.27:
 
 - Added --galera-info parameter mysqldump tool to add wsrep start position
 to the end of database dump.
+- A parameter-injection gap existed in wsrep_sst_rsync because it failed to validate the joiner-supplied WSREP_SST_OPT_REMOTE_USER and WSREP_SST_OPT_REMOTE_PSWD values before interpolating them into the donor-written stunnel.conf and the rsync magic file.
+- An appropriately privileged user (with SUPER privileges) could execute shell commands as the uid of the mariadbd process because the values of the system variables wsrep_sst_donor and wsrep_sst_receive_address, which can be modified at runtime, were not properly sanitized when used to construct a shell command.
+- The wsrep_notify_cmd functionality was susceptible to a parameter-injection vulnerability, as it failed to validate the peer-supplied wsrep_node_name and wsrep_node_incoming_address values before interpolating them into the notification command line.
 
 Known Issues:
 

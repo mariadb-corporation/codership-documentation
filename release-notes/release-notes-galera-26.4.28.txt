@@ -1,0 +1,26 @@
+# Changes in Galera 4.28 (2026-08-17)
+
+MariaDB is pleased to announce the release of Galera Replication library 4.28,
+implementing wsrep API version 26.
+
+The library is available as targeted packages and package repositories for a
+number of Linux distributions, including Debian 11 (Bullseye), and 12
+(Bookworm), 22.04 LTS (Jammy), and 24.04 LTS (Noble),
+RHEL 8, and 9. Obtaining packages using a package repository removes the need to
+download individual files and facilitates the deployment and upgrade of Galera
+nodes.
+
+This release will be available from https://mariadb.com/galera-downloads/.
+
+Notable changes and fixes in Galera since latest release 4.27:
+
+- Fixed the EVS view-install timeout so it stays between the suspect and
+  inactive timeouts. A wrong ordering could abandon a view install before a
+  silent node was even suspected, and could drive a healthy majority to
+  non-primary.
+- Added support for building against Asio 1.14.1 through 1.38.0, instead of
+  only the bundled copy.
+
+Known Issues:
+- In order to install Galera package on RHEL 8, MySQL and MariaDB modules need
+to be disabled first with `dnf -y module disable mysql mariadb`.

@@ -1,0 +1,28 @@
+# Changes in Galera 4.29 (2026-11-11)
+
+MariaDB is pleased to announce the release of Galera Replication library 4.29,
+implementing wsrep API version 26.
+
+The library is available as targeted packages and package repositories for a
+number of Linux distributions, including Debian 11 (Bullseye), and 12
+(Bookworm), 22.04 LTS (Jammy), and 24.04 LTS (Noble),
+RHEL 8, and 9. Obtaining packages using a package repository removes the need to
+download individual files and facilitates the deployment and upgrade of Galera
+nodes.
+
+This and future releases will be available from https://mariadb.com/galera-downloads/.
+
+Notable changes and fixes in Galera since latest release 4.28:
+
+- Added bounds checks when parsing GCS state, UUID, vote, and action messages.
+- Fixed IST receiver failures when connections are rejected by the allowlist,
+  and when shutdown occurs before state transfer is ready.
+- Improved EVS timeout validation to keep install, suspect, and inactive
+  timeouts in a safe order, and constrained the inactive check period relative
+  to the keepalive period.
+- Fixed handling of sockets closed during asynchronous connect or accept, and
+  prevented spurious wakeups from prematurely completing debug-sync waits.
+
+Known Issues:
+- In order to install Galera package on RHEL 8, MySQL and MariaDB modules need
+to be disabled first with `dnf -y module disable mysql mariadb`.
